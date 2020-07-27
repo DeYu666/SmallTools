@@ -1,11 +1,12 @@
-# import json  
-# import xmltodict
-import win32gui
 import win32con
 import win32clipboard as w
 
 from skimage import io
 from QQ import *
+import xlrd, re
+import datetime
+
+
 # def xmlToJson(xml):
 #     try:
 #         convertJson = xmltodict.parse(xml,encoding="utf-8")
@@ -22,7 +23,7 @@ from QQ import *
 #     print(jsonStr)
 
 
-import xlrd, re
+
 
 class ReadExcel:
 
@@ -109,56 +110,73 @@ class ReadExcel:
         return self.new_data
 
 
-
 def sendQQ():
     qq=sendMsg("暑期实践活动")
     qq.sendmsg()
 
 
-if __name__ == '__main__':
-    data_json = ReadExcel(r"C:\\Users\Administrator\Desktop\\教链项目\silei-2020-07-26.xls", "Page1").read_excel()
+# 初始化二维数组
+# m是行, n是列
+def initArray(m, n):
+    Array = [[0 for i in range(n)] for i in range(m)]
+    return Array
 
-    datas = [ [ 0 for i in range(6)] for i in range(200)] # n是列，m是行
+
+def getGoodsInfo(data_json, info):
+    datas = initArray(200, 6)
     i = 0
-
     for key in data_json:
-        datas[i][0] = data_json[key]["商品主图"]
-        datas[i][1] = data_json[key]["商品名称"]
-        datas[i][2] = data_json[key]["商品价格(单位：元)"]
-        datas[i][3] = data_json[key]["优惠券面额"]
-        datas[i][4] = data_json[key]["优惠券短链接(300天内有效)"]
-        datas[i][5] = data_json[key]["优惠券淘口令(30天内有效)"]
+        for j in range(0, len(info)):
+            datas[i][j] = data_json[key][info[j]]
         i += 1
-
-    print(datas[0])
-
+    return datas
 
 
+def saveImgByURL(url, savePath):
+    image = io.imread(url)
+    io.imsave(savePath, image)  # 保存图片
+    # io.imshow(image)  # 显示图片
 
 
-    image = io.imread(datas[1][0])
-    # io.imshow(image) # 显示图片
-    io.imsave('d:/newface.jpg', image) # 保存图片
+def printGoodsInfo(data):
+    goods_detail = str(data[1]) + "\n " + \
+                    "【在售价】：￥" + data[2] + "\n " + \
+                    "【券后价】：" + str(float(data[2]) - float(data[3])) + "\n " + \
+                    "【推荐理由】 领" + str(data[3]) + "元独家券，券后【" + str(float(data[2]) - float(data[3])) + "】包邮秒杀！\n " + \
+                    "【下单口令】" + str(data[5]) + "\n " + \
+                    "【下单链接】" + str(data[4]) + "\n "
+    return goods_detail
 
 
-    for data in datas:
-        if data[3] == None or data[1] == 0:
-            continue
-        
-        goods_detail = str(data[1]) + "\n " + \
-                        "【在售价】：￥" + data[2] + "\n " + \
-                        "【券后价】：" +  str(float(data[2]) - float(data[3])) + "\n " + \
-                        "【推荐理由】 领" + str(data[3]) + "元独家券，券后【"+ str(float(data[2]) - float(data[3])) +"】包邮秒杀！\n " + \
-                        "【下单口令】" + data[5] + "\n " + \
-                        "【下单链接】" + data[4] + "\n "
-
-        print(goods_detail)
-    
+def isInThisInterval(start_time,end_time):
+    now = datetime.datetime.now().strftime("%H:%M")
+    print("当前时间:" + now)
+    if start_time < now < end_time:
+        print("在此区间中")
+        return True
+    else:
+        print('不在此区间中')
+        return False
 
 
-    w.OpenClipboard()
-    w.EmptyClipboard()
-    w.SetClipboardData(win32con.CF_UNICODETEXT, goods_detail)
-    w.CloseClipboard()
+# if __name__ == '__main__':
+    # isInThisInterval("11:00", "12:00")
+    # isInThisInterval("13:00", "15:00")
 
-    sendQQ()
+
+    # data_json = ReadExcel(r"C:\Users\xd04\Desktop\SmallTools\doing\silei-2020-07-26.xls", "Page1").read_excel()
+    #
+    # info = ["商品主图", "商品名称", "商品价格(单位：元)", "优惠券面额", "优惠券短链接(300天内有效)", "优惠券淘口令(30天内有效)"]
+    #
+    # datas = getGoodsInfo(data_json, info)
+    #
+    # for data in datas:
+    #     if data[3] == None or data[1] == 0:
+    #         continue
+    #     saveImgByURL(data[0], 'd:/newface.jpg')
+    #     # 这里缺复制图片并发送到群中
+    #
+    #     goods_detail = printGoodsInfo(data)
+    #     # 这里缺复制文字并发送到群中
+    #     # print(goods_detail)
+    #     pass
