@@ -1,7 +1,7 @@
 """
 功能：
-    对 易观千帆 中的 ios 移动 app 中的 8-11 月中的 app 竞品分析爬虫
-    最终生成4个 excel 表格
+    对 易观千帆 中的 ios 移动 app 中的 1-9 月中的 app 竞品分析爬虫
+    最终生成9个 excel 表格
 
 涉及到的子功能有：
         通过url爬取数据(返回的是json数据，并部署html),(url 是在 network 中找到 ajax 请求的 url)
@@ -14,7 +14,7 @@
     cookie : 爬取数据需要VIP用户的 cookie 值
 
 调用方法：
-    python yiguanqianfan.py "cookie值"
+    python yiguanqianfan.py
 """
 
 import xlwt, requests, json, bs4
@@ -32,6 +32,27 @@ def GetDesktopPath():
     return os.path.join(os.path.expanduser("~"), 'Desktop')
 
 
+
+
+url_1 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1577808000000&osTypeId=0&type=3&queryType=1&indexIds=1,40,41,42,2,45,46,3,49,50,67,13,4,5,6,24,25,7,8,68,27,43,47,51,52,53,54,55,56&timestamp=1603532098618&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
+url_2 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1580486400000&osTypeId=0&type=3&queryType=1&indexIds=1,40,41,42,2,45,46,3,49,50,67,13,4,5,6,24,25,7,8,68,27,43,47,51,52,53,54,55,56&timestamp=1603532225363&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
+url_3 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1582992000000&osTypeId=0&type=3&queryType=1&indexIds=1,40,41,42,2,45,46,3,49,50,67,13,4,5,6,24,25,7,8,68,27,43,47,51,52,53,54,55,56&timestamp=1603532291927&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
+url_4 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1585670400000&osTypeId=0&type=3&queryType=1&indexIds=1,40,41,42,2,45,46,3,49,50,67,13,4,5,6,24,25,7,8,68,27,43,47,51,52,53,54,55,56&timestamp=1603532326621&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
+url_5 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1588262400000&osTypeId=0&type=3&queryType=1&indexIds=1,40,41,42,2,45,46,3,49,50,67,13,4,5,6,24,25,7,8,68,27,43,47,51,52,53,54,55,56&timestamp=1603532358347&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
+url_6 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1590940800000&osTypeId=0&type=3&queryType=1&indexIds=1,40,41,42,2,45,46,3,49,50,67,13,4,5,6,24,25,7,8,68,27,43,47,51,52,53,54,55,56&timestamp=1603532389934&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
+url_7 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1593532800000&osTypeId=0&type=3&queryType=1&indexIds=1,40,41,42,2,45,46,3,49,50,67,13,4,5,6,24,25,7,8,68,27,43,47,51,52,53,54,55,56&timestamp=1603532419912&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
+url_8 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1596211200000&osTypeId=0&type=3&queryType=1&indexIds=1,40,41,42,2,45,46,3,49,50,67,13,4,5,6,24,25,7,8,68,27,43,47,51,52,53,54,55,56&timestamp=1603532458525&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
+url_9 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1598889600000&osTypeId=0&type=3&queryType=1&indexIds=1,40,41,42,2,45,46,3,49,50,67,13,4,5,6,24,25,7,8,68,27,43,47,51,52,53,54,55,56&timestamp=1603532490823&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
+
+
+url = [url_1, url_2, url_3, url_4, url_5, url_6, url_7, url_8, url_9]
+
+
+
+
+
+
+
 def get_url(num, page):
     url = [
         "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1564588800000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1602568206580&appIds=&cateIds=&page=%s&pageSize=50&sortField=1&sort=desc"%(page),
@@ -40,14 +61,14 @@ def get_url(num, page):
         "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1572537600000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1602568206580&appIds=&cateIds=&page=%s&pageSize=50&sortField=1&sort=desc"%(page),
         "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1577808000000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1603372282273&appIds=&cateIds=&cateList=%7B%22tradeIds%22:%221151137,1151138,1191167,1211192,1151142,1211193%22%7D&page=1&pageSize=50&sortField=1&sort=desc"
     ]
-    return url[num], len(url)
+    return url[num], 9
 
 
 headers={
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36',
     'referer': 'https://qianfan.analysys.cn/refine/view/pageApp/pageApp.html?pageType=categoryApp&cateId=119',
     # 'cookie': "",
-    'cookie': "JSESSIONID=DA8B90022DB4EA16BBD45CA95C547E14; LOCALE_LANG=zh-cn; i18n=zh; Hm_lvt_abe5c65ffb860ebf053a859d05bee0ea=1602554206; trialDetail=v5%E5%BC%B9%E7%AA%97%E8%AF%95%E7%94%A8; _9755xjdesxxd_=32; JSESSIONID=AD45567699D9710D037071936DE3A2D3; openId=ofUeAs_BraBZIoIcDxJ2rVdy0JwU; Hm_lpvt_abe5c65ffb860ebf053a859d05bee0ea=1602556305; gdxidpyhxdE=AE53BuRx6LeWIgBvP8ZmMUgP4Er9y6JRB4QaTirMN4%2Fw95SYvH5ay7c7lfoXvemBScMrQLp1Hcgks4gbSxMbSPBtQpNryzrJp7t9w7UuIId%2F%2Fzq2wJH6UltMhScaunQbTYMmo7mqZEr%5C6VyLUS21Ls1NdJCy9JjKNf4LvoLC%2FYAyhV2n%3A1602557628865; echart-table-mode-type=2; ARK_ID=JSaf5e5b30a40fe7feab155bf3aead7a4eaf5e",
+    'cookie': "JSESSIONID=741E41315B301D660278392E58313721; LOCALE_LANG=zh-cn; i18n=zh; gdxidpyhxdE=X3M8rygGs83vow%2BZX6CS0YIGZSsInLnRuZX8xWBHCw8l%5C8tYfLXAZqSEyZeCQ3UnU8WK4i1AG47uc%5CINcAWH%2FgG61m262zsabfh%2BhBfpPgAxf%5CyU0LPLJrCpj62Z8kuudBRn4ElhdVyGMvbwaI0NAQJfzv67qWIgTgSCzxNg3fQHh6xe%3A1603370054328; _9755xjdesxxd_=32; echart-table-mode-type=1; ARK_ID=JS080c8dce99d5d7f35844cf267e5e4d04080c",
 }
 
 if cookie != "":
@@ -58,7 +79,8 @@ if cookie != "":
 Null, length = get_url(0, 1)
 print(length)
 
-for i in range(0, length):
+for u in url:
+    # u = u.replace("TypeId=2","TypeId=0")
     # 创建一个workbook 设置编码
     workbook = xlwt.Workbook(encoding='utf-8')
     # 创建一个worksheet
@@ -86,10 +108,15 @@ for i in range(0, length):
 
     line = 1
 
-    for j in range(0, 4):
-        print(i, j+1)
-        url, Null = get_url(i, j+1)
-        res = requests.get(url=url, headers=headers)
+    res = requests.get(url=u, headers=headers)
+    res_datas1 = json.loads(res.content)
+    # print(res_datas1)
+    page = res_datas1['datas']['table']['totalPage']
+
+
+    for j in range(0, page):
+        url_bak = u.replace("page=1","page=" + str(j+1))
+        res = requests.get(url=url_bak, headers=headers)
         datas = json.loads(res.content)
         apps_data = datas['datas']['table']['bodys']
         names_data = datas['datas']['table']['heads']
@@ -142,5 +169,5 @@ for i in range(0, length):
     time_all = datetime.datetime.fromtimestamp(nonce/1000)
     timeYMD = str(time_all).split(' ')[0]
     # 保存
-    workbook.save(str(GetDesktopPath())+'\\易观千帆' + str(timeYMD) + '.xls')
+    workbook.save('全网-易观千帆' + str(timeYMD) + '.xls')
 
