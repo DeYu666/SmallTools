@@ -2,7 +2,7 @@
 
 """
 功能：
-    对 易观千帆 中的 ios 移动 app 中的 1-9 月中的某些 app 竞品分析爬虫
+    对 易观千帆 中的 ios 移动 app 中的 1-9 月中的特定 app 竞品分析爬虫
     最终生成9个 excel 表格
 
 涉及到的子功能有：
@@ -94,7 +94,7 @@ headers={
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36',
     'referer': 'https://qianfan.analysys.cn/refine/view/pageApp/pageApp.html?pageType=categoryApp&cateId=119',
     # 'cookie': "",
-    'cookie': "JSESSIONID=741E41315B301D660278392E58313721; LOCALE_LANG=zh-cn; i18n=zh; gdxidpyhxdE=X3M8rygGs83vow%2BZX6CS0YIGZSsInLnRuZX8xWBHCw8l%5C8tYfLXAZqSEyZeCQ3UnU8WK4i1AG47uc%5CINcAWH%2FgG61m262zsabfh%2BhBfpPgAxf%5CyU0LPLJrCpj62Z8kuudBRn4ElhdVyGMvbwaI0NAQJfzv67qWIgTgSCzxNg3fQHh6xe%3A1603370054328; _9755xjdesxxd_=32; echart-table-mode-type=1; ARK_ID=JS080c8dce99d5d7f35844cf267e5e4d04080c",
+    'cookie': "JSESSIONID=68C3E3701CA2CA677BD709AE25F7FBDE; LOCALE_LANG=zh-cn; i18n=zh; gdxidpyhxdE=X3M8rygGs83vow%2BZX6CS0YIGZSsInLnRuZX8xWBHCw8l%5C8tYfLXAZqSEyZeCQ3UnU8WK4i1AG47uc%5CINcAWH%2FgG61m262zsabfh%2BhBfpPgAxf%5CyU0LPLJrCpj62Z8kuudBRn4ElhdVyGMvbwaI0NAQJfzv67qWIgTgSCzxNg3fQHh6xe%3A1603370054328; _9755xjdesxxd_=32; echart-table-mode-type=1; ARK_ID=JS0468c485dc388a971c92b5e295ef63710468",
 }
 
 
@@ -105,7 +105,7 @@ def scrapy(url):
     import json
     import datetime
 
-
+    url = url.replace("osTypeId=2","osTypeId=1")
     res = requests.get(url=url, headers=headers)
     res_datas1 = json.loads(res.content)
     # print(res_datas1)
@@ -119,6 +119,8 @@ def scrapy(url):
     for i in range(1, page+1):
         # url2 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1577808000000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1603462082625&appIds=&cateIds=&page=%s&pageSize=50&sortField=1&sort=desc"%(i)
         url2 = url.replace("page=1","page=" + str(i))
+
+        url2 = url2.replace("osTypeId=2", "osTypeId=1")
         res = requests.get(url=url2, headers=headers)
         res_datas = json.loads(res.content)
         datas = res_datas['datas']['table']['bodys']
@@ -255,7 +257,7 @@ def scrapy(url):
 
 
     # 保存
-    workbook.save('特定数据-易观千帆' + str(timeYMD) + '.xls')
+    workbook.save('特定数据-安卓-易观千帆' + str(timeYMD) + '.xls')
 
 
 
