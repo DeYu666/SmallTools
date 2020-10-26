@@ -94,7 +94,7 @@ headers={
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36',
     'referer': 'https://qianfan.analysys.cn/refine/view/pageApp/pageApp.html?pageType=categoryApp&cateId=119',
     # 'cookie': "",
-    'cookie': "JSESSIONID=68C3E3701CA2CA677BD709AE25F7FBDE; LOCALE_LANG=zh-cn; i18n=zh; gdxidpyhxdE=X3M8rygGs83vow%2BZX6CS0YIGZSsInLnRuZX8xWBHCw8l%5C8tYfLXAZqSEyZeCQ3UnU8WK4i1AG47uc%5CINcAWH%2FgG61m262zsabfh%2BhBfpPgAxf%5CyU0LPLJrCpj62Z8kuudBRn4ElhdVyGMvbwaI0NAQJfzv67qWIgTgSCzxNg3fQHh6xe%3A1603370054328; _9755xjdesxxd_=32; echart-table-mode-type=1; ARK_ID=JS0468c485dc388a971c92b5e295ef63710468",
+    'cookie': "JSESSIONID=8260D036DDE05F76464F6CA0876427A3; LOCALE_LANG=zh-cn; i18n=zh; _9755xjdesxxd_=32; trialDetail=%E5%85%AC%E5%85%B1%E5%BA%95%E9%83%A8%E8%AF%95%E7%94%A8; ARK_STARTUP=eyJTVEFSVFVQIjp0cnVlLCJTVEFSVFVQVElNRSI6IjIwMjAtMTAtMDMgMTY6NDM6MTYuNjEyIn0%3D; Hm_lvt_d981851bd0d388f5b0fa75295b96745d=1601714599; Hm_lpvt_d981851bd0d388f5b0fa75295b96745d=1601714599; Hm_lvt_abe5c65ffb860ebf053a859d05bee0ea=1601711098,1602390103; Hm_lpvt_abe5c65ffb860ebf053a859d05bee0ea=1602390103; JSESSIONID=063D104D96DEF5A15813B07105A91768; gdxidpyhxdE=V262TnIENrODnTyaZMikQs%2BsD8hR3AvW8XOjXsX1jDE7vT2eb%5CMhzkh66yw5Sw9zQggwXgcp7tyzkjbPB3UDD6Z1fvBMZ8%5C1bnHHdjS%2BHHLmAnSYdwJHbNlzgrChw1%5CtbcL6KNDVCsOQZ%5C2VAj4Z0C8ywklNARK3j%2BCt0%2BYAqhMaP6oj%3A1602391854858; echart-table-mode-type=1; FZ_STROAGE.analysys.cn=eyJTRUVTSU9OSUQiOiJlZDhhOGFjMzMzNTJkMDA1IiwiU0VFU0lPTkRBVEUiOjE2MDM2MTI3MDY3NzIsIkFOU0FQUElEIjoiZmFiZTc5NGE3NDU1NDQzNSIsIkFOUyRERUJVRyI6MiwiQU5TVVBMT0FEVVJMIjoiaHR0cHM6Ly91YXQuYW5hbHlzeXMuY246NDA4OS8iLCJGUklTVERBWSI6IjIwMjAxMDAzIiwiRlJJU1RJTUUiOmZhbHNlLCJBUktfSUQiOiJKUzhlZWI3YjdhNGMyZTc3N2ZiNTQzNTIwM2ZmMmFjMTViOGVlYiIsIkFSS0ZSSVNUUFJPRklMRSI6IjIwMjAtMTAtMDMgMTY6NDM6MTYuNjM5IiwiQU5TU0VSVkVSVElNRSI6MH0%3D; ARK_ID=JS2b98f9537d4f10a671aa9717dc1a6ce82b98",
 }
 
 
@@ -105,7 +105,7 @@ def scrapy(url):
     import json
     import datetime
 
-    url = url.replace("osTypeId=2","osTypeId=1")
+    # url = url.replace("osTypeId=2","osTypeId=1")
     res = requests.get(url=url, headers=headers)
     res_datas1 = json.loads(res.content)
     # print(res_datas1)
@@ -119,8 +119,9 @@ def scrapy(url):
     for i in range(1, page+1):
         # url2 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1577808000000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1603462082625&appIds=&cateIds=&page=%s&pageSize=50&sortField=1&sort=desc"%(i)
         url2 = url.replace("page=1","page=" + str(i))
-
-        url2 = url2.replace("osTypeId=2", "osTypeId=1")
+        import time
+        time.sleep(5)
+        # url2 = url2.replace("osTypeId=2", "osTypeId=1")
         res = requests.get(url=url2, headers=headers)
         res_datas = json.loads(res.content)
         datas = res_datas['datas']['table']['bodys']
@@ -132,7 +133,7 @@ def scrapy(url):
                         data_name = data['appName']
                         if str(data_name) == "None":
                             continue
-                        if  str(data_name).replace(' ', '').upper() in  str(k).replace(' ', '').upper():
+                        if  str(data_name).replace(' ', '').upper() == str(k).replace(' ', '').upper() :
                             result_json[i][j][k] = data
 
 
@@ -257,7 +258,7 @@ def scrapy(url):
 
 
     # 保存
-    workbook.save('特定数据-安卓-易观千帆' + str(timeYMD) + '.xls')
+    workbook.save('特定数据-ios-易观千帆' + str(timeYMD) + '.xls')
 
 
 
@@ -265,31 +266,76 @@ def scrapy(url):
     print("探探" in "探探")
 
 
+#
+# url_1 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1577808000000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1603462082625&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
+# url_1 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1577808000000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1603526752594&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
+#
+# url_2 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1580486400000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1603466854934&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
+# url_2 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1580486400000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1603526853877&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
+#
+# url_3 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1582992000000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1603526890783&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
+#
+# url_4 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1585670400000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1603526931916&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
+#
+# url_5 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1588262400000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1603528280899&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
+#
+# url_6 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1590940800000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1603527046612&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
+#
+# url_7 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1593532800000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1603527080288&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
+#
+# url_8 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1596211200000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1603527110372&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
+#
+# url_9 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1598889600000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1603527142097&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
+#
+#
+# url = [url_1, url_2, url_3, url_4, url_5, url_6, url_7, url_8, url_9]
 
-url_1 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1577808000000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1603462082625&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
-url_1 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1577808000000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1603526752594&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
-
-url_2 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1580486400000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1603466854934&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
-url_2 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1580486400000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1603526853877&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
-
-url_3 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1582992000000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1603526890783&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
-
-url_4 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1585670400000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1603526931916&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
-
-url_5 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1588262400000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1603528280899&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
-
-url_6 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1590940800000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1603527046612&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
-
-url_7 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1593532800000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1603527080288&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
-
-url_8 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1596211200000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1603527110372&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
-
-url_9 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1598889600000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1603527142097&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
+# for u in url:
+#     scrapy(u)
 
 
-url = [url_1, url_2, url_3, url_4, url_5, url_6, url_7, url_8, url_9]
+
+
+import time
+
+ticks = time.time()
+print('当前时间戳： ', ticks)
+
+new_ticks = str(ticks).replace('.', '')[:-3]
+print(new_ticks)
+
+timestamp = new_ticks
+
+
+a1 = "2020-2-2"
+# 先转换为时间数组
+timeArray = time.strptime(a1, "%Y-%m-%d")
+
+# 转换为时间戳
+statDate1 = int(time.mktime(timeArray))
+statDate1 = str(statDate1) + "000"
+
+print(statDate1)
+
+
+"1588176000000"
+"1588089600000"
+"1588003200000"
+
+print(1588176000000-1588089600000)
+print(1588089600000-1588003200000)
+
+url = []
+
+statDate = int(statDate1)
+timestamp = timestamp
+for i in range(0, 299):
+    # url.append("https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=1&tabType=1&statDate=1588176000000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,24,25&timestamp=1603628884434&appIds=&cateIds=&list=&page=1&pageSize=50&sortField=1&sort=desc")
+    url.append("https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=1&tabType=1&statDate="+str(statDate)+"&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,24,25&timestamp="+str(timestamp)+"&appIds=&cateIds=&list=&page=1&pageSize=50&sortField=1&sort=desc")
+    statDate += 86400000
+
+
 
 for u in url:
+    # print(u)
     scrapy(u)
-
-
