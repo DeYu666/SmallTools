@@ -28,41 +28,41 @@ def get_class():
     data_classes = {
         "通讯社交类":{
             "通讯": "易信；旺信；微话；有信（landray）；微微；来电；比邻；触宝电话；企业微信；TIM；WhatsApp；Skype",
-            "社交": "微信；小红书；QQ；Soul；新浪微博；知乎；探探；陌陌；百度贴吧；美篇；LOFTER；QQ空间；连信；豆瓣； 脉脉；爱豆IDOL；派派；最右；伊对；陌生声",
+            "社交": "微信；小红书；QQ；Soul；新浪微博；知乎；探探；陌陌；百度贴吧；美篇；LOFTER；QQ空间；连信；豆瓣； 脉脉；爱豆IDOL；派派；最右；伊对；陌生声；MOMO陌陌；伊对视频找对象；陌声",
         },
         "工具类":{
-            "地图导航":"高德地图；百度地图；腾讯地图；北斗导航；奥维互动地图；搜狗地图；凯立德导航；途强在线；Google 地球；GPS工具箱；天下游；小猪导航",
-            "拍照及图片处理":"美图秀秀；b612；BeautyCam美颜相机；轻颜相机；Faceu激萌；无他相机；黄油相机；水印相机；天天p图；一甜相机；玩图-全能美化；美妆相机；picsart；简拼；美人相机",
-            "视频编辑":"剪映；快影；小影；彩视；录屏大师；剪影",
-            "交通出行":"哈罗出行；摩拜单车；永安行；车来了；滴答出行；掌上出行；神州租车；滴滴出行；嘀嗒出行；亿通行；地铁通；首汽约车",
+            "地图导航":"高德地图；百度地图；腾讯地图；北斗地图；奥维互动地图；搜狗地图；凯立德导航；途强在线；Google 地球；GPS工具箱；天下游；小猪导航；北斗导航（西瓜影音）；北斗导航（应用多多）",
+            "拍照及图片处理":"美图秀秀；b612；BeautyCam美颜相机；轻颜相机；Faceu激萌；无他相机；黄油相机；水印相机；天天p图；一甜相机；玩图-全能美化；美妆相机；picsart；简拼；美人相机；b612咔叽；玩图－全能美化",
+            "视频编辑":"剪映；快影；小影；彩视；录屏大师；剪影；简影；乐秀视频编辑器；视频剪辑大师",
+            "交通出行":"哈啰出行；摩拜单车；永安行；车来了；滴答出行；掌上出行；神州租车；滴滴出行；嘀嗒出行；亿通行；地铁通；首汽约车",
             "快递":"菜鸟裹裹；货拉拉；快递100；闪送；运满满司机；美团众包；运满满司机",
             "智能家居":"360智能摄像机；和家亲；小蚁摄像机；v380；华为智能家居；美的美居；海尔智家；和家亲；天猫精灵；米家；悟空遥控器；阿里Tv助手",
         },
         "视频流媒体类":{
-            "综合视频":"爱奇艺；腾讯视频；芒果tv；优酷视频；搜狐视频；咪咕视频；pp视频；乐视视频； 风行视频；天翼超高清；看看视频； 哔哩哔哩",
-            "短视频":"抖音短视频；快手；西瓜视频；火山视频；微视；美拍；秒拍；波波视频；VUE；快手极速版；好看视频；全民小视频；火山极速版；土豆视频；小影",
+            "综合视频":"爱奇艺；腾讯视频；芒果tv；优酷视频；搜狐视频；咪咕视频；pp视频；乐视视频； 风行视频；天翼超高清；看看视频； 哔哩哔哩；抖音火山版(原火山小视频)；VUEVlog",
+            "短视频":"抖音短视频；快手；西瓜视频；火山视频；微视；美拍；秒拍；波波视频；VUE；快手极速版；好看视频；全民小视频；火山极速版；土豆视频",
             "垂直在线视频":"韩剧tv（宝云网络）；爱奇艺奇巴布；福音TV；人人视频；小企鹅乐园；1905电影网；小蛙；戏曲多多；韩剧tv（乐酷网络）",
-            "垂直直播视频":"斗鱼；虎牙直播；腾讯体育；企鹅电竞；yy；花椒直播；映客；PP体育；直播吧；秀色直播；红人直播；九秀直播；is语音",
+            "垂直直播视频":"斗鱼；虎牙直播；腾讯体育；企鹅电竞；yy；花椒直播；映客；PP体育；直播吧；秀色直播；红人直播；九秀直播；is语音；斗鱼直播；直播吧（厦门傲播）",
         },
         "音乐电台":{
             "综合音乐平台":"qq音乐；网易云音乐；酷狗音乐；酷我音乐；虾米音乐；咪咕音乐；爱音乐；爱听4G；Y2002电音；多米音乐；VV音乐",
-            "音乐娱乐": "全民K歌； 唱吧音视频；天籁K歌；K歌；酷我K歌；爱唱",
-            "有声阅读": "喜马拉雅；蜻蜓FM；荔枝；懒人听书；得到；凯叔讲故事；氧气听书；企鹅FM；酷我畅听；听伴；凤凰FM；FM电台收音机；有声小说；阿基米德；清风DJ",
+            "音乐娱乐": "全民K歌； 唱吧音视频；天籁K歌；K歌；酷我K歌；爱唱；K米",
+            "有声阅读": "懒人听书FM；喜马拉雅；蜻蜓FM；荔枝；懒人听书；得到；凯叔讲故事；氧气听书；企鹅FM；酷我畅听；听伴；凤凰FM；FM电台收音机；有声小说；阿基米德；清风DJ",
         },
         "在线购物":{
             "综合电商":"手机淘宝；京东；拼多多；苏宁易购；手机天猫；淘宝特价版；当当；微店；必要；蘑菇街；阿里巴巴；网易严选；国美；闲鱼",
-            "旅游综合预定": "携程；去哪儿旅行；马蜂窝旅游；途牛旅游；同程旅行；艺龙旅行；驴妈妈旅游；出行365；无忧行",
+            "旅游综合预定": "携程旅行；去哪儿旅行；马蜂窝旅游；途牛旅游；同程旅行；艺龙旅行；驴妈妈旅游；出行365；无忧行",
         },
         "信息平台":{
-            "职业招聘":"前程无忧51job；智联招聘；招财猫招聘；BOSS直聘；拉钩招聘；猎聘；大街；斗米；店长直聘；青团社兼职",
+            "职业招聘":"招才猫直聘；拉勾招聘；前程无忧51job；智联招聘；招财猫招聘；BOSS直聘；拉钩招聘；猎聘；大街；斗米；店长直聘；青团社兼职",
             "综合新闻资讯": "腾讯新闻；今日头条；网易新闻；新浪新闻；搜狐新闻；看点快报；人民日报；搜狐资讯；中青看点；一点咨询；趣头条；惠头条；东方头条；一点资讯；参考消息；中青看点；知乎日报",
-            "房产信息": "安居客；贝克找房；我爱我家；链家；365淘房；巴乐兔租房；青客公寓",
+            "房产信息": "安居客；贝壳找房；我爱我家；链家；365淘房；巴乐兔租房；青客公寓",
         },
         "教育学习":{
-            "中小学类教育":"作业帮；小猿搜题；快对作业；一起小学学生；学而思网校；学而思培优；纳米盒；爱作业",
+            "中小学类教育":"爱作业（大拿科技）；作业帮；小猿搜题；快对作业；一起小学学生；学而思网校；学而思培优；纳米盒；爱作业",
             "教育平台": "学习强国；安全教育平台；腾讯课堂；网易公开课；中国大学mooc；嗨学；今日校园；网上优能；e学；小勾学习圈；优路学习；掌心宝贝园丁",
-            "语言学习": "百词斩；流利说；叽里呱啦；英语趣配音；墨墨背单词；每日英语听力；知米背单词；可可英语；沪江开心词场；翼课学生；少儿趣配音；小站雅思；乐词-新东方背单词；英语魔方秀；TED英语演讲",
-            "移动综合阅读": "掌阅；QQ阅读；咪咕阅读；书旗小说；小书亭；连尚读书；爱奇艺免费阅读；百度阅读；米读小说；追书神器免费版；熊猫看书；搜狗阅读；起点读书；微信读书；当当云读书",
+            "语言学习": "乐词－新东方背单词；百词斩；流利说；叽里呱啦；英语趣配音；墨墨背单词；每日英语听力；知米背单词；可可英语；沪江开心词场；翼课学生；少儿趣配音；小站雅思；乐词-新东方背单词；英语魔方秀；TED英语演讲",
+            "移动综合阅读": "当当云阅读；掌阅；QQ阅读；咪咕阅读；书旗小说；小书亭；连尚读书；爱奇艺免费阅读；百度阅读；米读小说；追书神器免费版；熊猫看书；搜狗阅读；起点读书；微信读书",
         },
     }
 
@@ -94,7 +94,7 @@ headers={
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36',
     'referer': 'https://qianfan.analysys.cn/refine/view/pageApp/pageApp.html?pageType=categoryApp&cateId=119',
     # 'cookie': "",
-    'cookie': "JSESSIONID=8260D036DDE05F76464F6CA0876427A3; LOCALE_LANG=zh-cn; i18n=zh; _9755xjdesxxd_=32; trialDetail=%E5%85%AC%E5%85%B1%E5%BA%95%E9%83%A8%E8%AF%95%E7%94%A8; ARK_STARTUP=eyJTVEFSVFVQIjp0cnVlLCJTVEFSVFVQVElNRSI6IjIwMjAtMTAtMDMgMTY6NDM6MTYuNjEyIn0%3D; Hm_lvt_d981851bd0d388f5b0fa75295b96745d=1601714599; Hm_lpvt_d981851bd0d388f5b0fa75295b96745d=1601714599; Hm_lvt_abe5c65ffb860ebf053a859d05bee0ea=1601711098,1602390103; Hm_lpvt_abe5c65ffb860ebf053a859d05bee0ea=1602390103; JSESSIONID=063D104D96DEF5A15813B07105A91768; gdxidpyhxdE=V262TnIENrODnTyaZMikQs%2BsD8hR3AvW8XOjXsX1jDE7vT2eb%5CMhzkh66yw5Sw9zQggwXgcp7tyzkjbPB3UDD6Z1fvBMZ8%5C1bnHHdjS%2BHHLmAnSYdwJHbNlzgrChw1%5CtbcL6KNDVCsOQZ%5C2VAj4Z0C8ywklNARK3j%2BCt0%2BYAqhMaP6oj%3A1602391854858; echart-table-mode-type=1; FZ_STROAGE.analysys.cn=eyJTRUVTSU9OSUQiOiJlZDhhOGFjMzMzNTJkMDA1IiwiU0VFU0lPTkRBVEUiOjE2MDM2MTI3MDY3NzIsIkFOU0FQUElEIjoiZmFiZTc5NGE3NDU1NDQzNSIsIkFOUyRERUJVRyI6MiwiQU5TVVBMT0FEVVJMIjoiaHR0cHM6Ly91YXQuYW5hbHlzeXMuY246NDA4OS8iLCJGUklTVERBWSI6IjIwMjAxMDAzIiwiRlJJU1RJTUUiOmZhbHNlLCJBUktfSUQiOiJKUzhlZWI3YjdhNGMyZTc3N2ZiNTQzNTIwM2ZmMmFjMTViOGVlYiIsIkFSS0ZSSVNUUFJPRklMRSI6IjIwMjAtMTAtMDMgMTY6NDM6MTYuNjM5IiwiQU5TU0VSVkVSVElNRSI6MH0%3D; ARK_ID=JS2b98f9537d4f10a671aa9717dc1a6ce82b98",
+    'cookie': "JSESSIONID=C77630D207561B85309ED74E30EAB457; LOCALE_LANG=zh-cn; i18n=zh; _9755xjdesxxd_=32; Hm_lvt_d981851bd0d388f5b0fa75295b96745d=1601714599; Hm_lvt_abe5c65ffb860ebf053a859d05bee0ea=1601711098,1602390103; gdxidpyhxdE=V262TnIENrODnTyaZMikQs%2BsD8hR3AvW8XOjXsX1jDE7vT2eb%5CMhzkh66yw5Sw9zQggwXgcp7tyzkjbPB3UDD6Z1fvBMZ8%5C1bnHHdjS%2BHHLmAnSYdwJHbNlzgrChw1%5CtbcL6KNDVCsOQZ%5C2VAj4Z0C8ywklNARK3j%2BCt0%2BYAqhMaP6oj%3A1602391854858; FZ_STROAGE.analysys.cn=eyJTRUVTSU9OSUQiOiJlZDhhOGFjMzMzNTJkMDA1IiwiU0VFU0lPTkRBVEUiOjE2MDM2MTI3MDY3NzIsIkFOU0FQUElEIjoiZmFiZTc5NGE3NDU1NDQzNSIsIkFOUyRERUJVRyI6MiwiQU5TVVBMT0FEVVJMIjoiaHR0cHM6Ly91YXQuYW5hbHlzeXMuY246NDA4OS8iLCJGUklTVERBWSI6IjIwMjAxMDAzIiwiRlJJU1RJTUUiOmZhbHNlLCJBUktfSUQiOiJKUzhlZWI3YjdhNGMyZTc3N2ZiNTQzNTIwM2ZmMmFjMTViOGVlYiIsIkFSS0ZSSVNUUFJPRklMRSI6IjIwMjAtMTAtMDMgMTY6NDM6MTYuNjM5IiwiQU5TU0VSVkVSVElNRSI6MH0%3D; echart-table-mode-type=1; ARK_ID=JSad84a9cb2968f7cbf7c202be8541e07dad84",
 }
 
 
@@ -120,7 +120,7 @@ def scrapy(url):
         # url2 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1577808000000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1603462082625&appIds=&cateIds=&page=%s&pageSize=50&sortField=1&sort=desc"%(i)
         url2 = url.replace("page=1","page=" + str(i))
         import time
-        time.sleep(5)
+        time.sleep(2)
         # url2 = url2.replace("osTypeId=2", "osTypeId=1")
         res = requests.get(url=url2, headers=headers)
         res_datas = json.loads(res.content)
@@ -133,7 +133,7 @@ def scrapy(url):
                         data_name = data['appName']
                         if str(data_name) == "None":
                             continue
-                        if  str(data_name).replace(' ', '').upper() == str(k).replace(' ', '').upper() :
+                        if  str(data_name).replace(' ', '').replace('(', '').replace(')', '').upper() == str(k).replace(' ', '').replace('(', '').replace(')', '').upper():
                             result_json[i][j][k] = data
 
 
@@ -258,7 +258,7 @@ def scrapy(url):
 
 
     # 保存
-    workbook.save('特定数据-ios-易观千帆' + str(timeYMD) + '.xls')
+    workbook.save(str(GetDesktopPath())+'\\特定数据-iso-天-易观千帆' + str(timeYMD) + '.xls')
 
 
 
@@ -266,7 +266,7 @@ def scrapy(url):
     print("探探" in "探探")
 
 
-#
+
 # url_1 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1577808000000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1603462082625&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
 # url_1 = "https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=3&tabType=1&statDate=1577808000000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,4,5,6,24,25,7,8&timestamp=1603526752594&appIds=&cateIds=&page=1&pageSize=50&sortField=1&sort=desc"
 #
@@ -289,7 +289,7 @@ def scrapy(url):
 #
 #
 # url = [url_1, url_2, url_3, url_4, url_5, url_6, url_7, url_8, url_9]
-
+#
 # for u in url:
 #     scrapy(u)
 
@@ -307,7 +307,7 @@ print(new_ticks)
 timestamp = new_ticks
 
 
-a1 = "2020-2-2"
+a1 = "2020-5-3"
 # 先转换为时间数组
 timeArray = time.strptime(a1, "%Y-%m-%d")
 
@@ -329,13 +329,15 @@ url = []
 
 statDate = int(statDate1)
 timestamp = timestamp
-for i in range(0, 299):
+for i in range(0, 206):
     # url.append("https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=1&tabType=1&statDate=1588176000000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,24,25&timestamp=1603628884434&appIds=&cateIds=&list=&page=1&pageSize=50&sortField=1&sort=desc")
     url.append("https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=1&tabType=1&statDate="+str(statDate)+"&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,24,25&timestamp="+str(timestamp)+"&appIds=&cateIds=&list=&page=1&pageSize=50&sortField=1&sort=desc")
     statDate += 86400000
 
 
-
 for u in url:
     # print(u)
     scrapy(u)
+    time.sleep(10)
+
+

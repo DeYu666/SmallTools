@@ -49,6 +49,37 @@ url = [url_1, url_2, url_3, url_4, url_5, url_6, url_7, url_8, url_9]
 
 
 
+import time
+
+ticks = time.time()
+print('当前时间戳： ', ticks)
+
+new_ticks = str(ticks).replace('.', '')[:-3]
+print(new_ticks)
+
+timestamp = new_ticks
+
+
+a1 = "2020-4-1"
+# 先转换为时间数组
+timeArray = time.strptime(a1, "%Y-%m-%d")
+
+# 转换为时间戳
+statDate1 = int(time.mktime(timeArray))
+statDate1 = str(statDate1) + "000"
+
+print(statDate1)
+
+url = []
+
+statDate = int(statDate1)
+timestamp = timestamp
+for i in range(0, 183):
+    # url.append("https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=1&tabType=1&statDate=1588176000000&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,24,25&timestamp=1603628884434&appIds=&cateIds=&list=&page=1&pageSize=50&sortField=1&sort=desc")
+    url.append("https://qianfan.analysys.cn/refine/qianfan/appIndex/indexs?dateType=1&tabType=1&statDate="+str(statDate)+"&osTypeId=2&type=3&queryType=1&indexIds=1,2,3,24,25&timestamp="+str(timestamp)+"&appIds=&cateIds=&list=&page=1&pageSize=50&sortField=1&sort=desc")
+    statDate += 86400000
+
+
 
 
 
@@ -68,7 +99,7 @@ headers={
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36',
     'referer': 'https://qianfan.analysys.cn/refine/view/pageApp/pageApp.html?pageType=categoryApp&cateId=119',
     # 'cookie': "",
-    'cookie': "JSESSIONID=741E41315B301D660278392E58313721; LOCALE_LANG=zh-cn; i18n=zh; gdxidpyhxdE=X3M8rygGs83vow%2BZX6CS0YIGZSsInLnRuZX8xWBHCw8l%5C8tYfLXAZqSEyZeCQ3UnU8WK4i1AG47uc%5CINcAWH%2FgG61m262zsabfh%2BhBfpPgAxf%5CyU0LPLJrCpj62Z8kuudBRn4ElhdVyGMvbwaI0NAQJfzv67qWIgTgSCzxNg3fQHh6xe%3A1603370054328; _9755xjdesxxd_=32; echart-table-mode-type=1; ARK_ID=JS080c8dce99d5d7f35844cf267e5e4d04080c",
+    'cookie': "JSESSIONID=6ED07AA5A18A18C35F77C185F7D358BD; LOCALE_LANG=zh-cn; i18n=zh; _9755xjdesxxd_=32; trialDetail=%E5%85%AC%E5%85%B1%E5%BA%95%E9%83%A8%E8%AF%95%E7%94%A8; ARK_STARTUP=eyJTVEFSVFVQIjp0cnVlLCJTVEFSVFVQVElNRSI6IjIwMjAtMTAtMDMgMTY6NDM6MTYuNjEyIn0%3D; Hm_lvt_d981851bd0d388f5b0fa75295b96745d=1601714599; Hm_lpvt_d981851bd0d388f5b0fa75295b96745d=1601714599; Hm_lvt_abe5c65ffb860ebf053a859d05bee0ea=1601711098,1602390103; Hm_lpvt_abe5c65ffb860ebf053a859d05bee0ea=1602390103; JSESSIONID=063D104D96DEF5A15813B07105A91768; gdxidpyhxdE=V262TnIENrODnTyaZMikQs%2BsD8hR3AvW8XOjXsX1jDE7vT2eb%5CMhzkh66yw5Sw9zQggwXgcp7tyzkjbPB3UDD6Z1fvBMZ8%5C1bnHHdjS%2BHHLmAnSYdwJHbNlzgrChw1%5CtbcL6KNDVCsOQZ%5C2VAj4Z0C8ywklNARK3j%2BCt0%2BYAqhMaP6oj%3A1602391854858; echart-table-mode-type=1; FZ_STROAGE.analysys.cn=eyJTRUVTSU9OSUQiOiJlZDhhOGFjMzMzNTJkMDA1IiwiU0VFU0lPTkRBVEUiOjE2MDM2MTI3MDY3NzIsIkFOU0FQUElEIjoiZmFiZTc5NGE3NDU1NDQzNSIsIkFOUyRERUJVRyI6MiwiQU5TVVBMT0FEVVJMIjoiaHR0cHM6Ly91YXQuYW5hbHlzeXMuY246NDA4OS8iLCJGUklTVERBWSI6IjIwMjAxMDAzIiwiRlJJU1RJTUUiOmZhbHNlLCJBUktfSUQiOiJKUzhlZWI3YjdhNGMyZTc3N2ZiNTQzNTIwM2ZmMmFjMTViOGVlYiIsIkFSS0ZSSVNUUFJPRklMRSI6IjIwMjAtMTAtMDMgMTY6NDM6MTYuNjM5IiwiQU5TU0VSVkVSVElNRSI6MH0%3D; ARK_ID=JSa377d2e643fbb10560c50c4a1c21f209a377",
 }
 
 if cookie != "":
@@ -79,6 +110,7 @@ if cookie != "":
 Null, length = get_url(0, 1)
 print(length)
 
+i = 0
 for u in url:
     # u = u.replace("TypeId=2","TypeId=0")
     # 创建一个workbook 设置编码
@@ -117,6 +149,7 @@ for u in url:
     for j in range(0, page):
         url_bak = u.replace("page=1","page=" + str(j+1))
         res = requests.get(url=url_bak, headers=headers)
+        time.sleep(1)
         datas = json.loads(res.content)
         apps_data = datas['datas']['table']['bodys']
         names_data = datas['datas']['table']['heads']
@@ -169,5 +202,6 @@ for u in url:
     time_all = datetime.datetime.fromtimestamp(nonce/1000)
     timeYMD = str(time_all).split(' ')[0]
     # 保存
-    workbook.save('全网-易观千帆' + str(timeYMD) + '.xls')
-
+    workbook.save(str(GetDesktopPath())+'\\ios-易观千帆' + str(timeYMD) + '.xls')
+    time.sleep(10)
+    print("已完成 "+ str(timeYMD) +" 的数据了")

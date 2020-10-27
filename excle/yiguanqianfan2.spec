@@ -3,7 +3,7 @@
 block_cipher = None
 
 
-a = Analysis(['yiguanqianfan3.py'],
+a = Analysis(['yiguanqianfan2.py'],
              pathex=['C:\\Users\\xd04\\Desktop\\SmallTools\\excle'],
              binaries=[],
              datas=[],
@@ -23,7 +23,7 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,
           [],
-          name='yiguanqianfan3',
+          name='yiguanqianfan2',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,
