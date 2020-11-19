@@ -23,3 +23,10 @@
   - setting.py 中的 email_sender_smtp_pass 字段需要到QQ邮箱中开启pop3/smtp服务，会自动生成一个授权码。这个字段就是授权码
 
 - 。。。。。。
+
+
+
+## website 文件夹中存放着搭建博客的 React 静态代码
+
+- my-blog-static-0   这是搭建完纯静态的博客网站时的代码。各个组件并没有互相连接。
+

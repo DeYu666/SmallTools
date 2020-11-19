@@ -1,0 +1,62 @@
+.friends_links{
+  padding: 9px 0 0;
+  margin: 0;
+  display: block;
+}
+.friends_links>li{
+  display: block;
+  list-style: none;
+}
+
+.friend_card {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.friend_card:hover .site_icon {
+  display: block;
+}
+
+.friend_card .site_icon{
+  width: 48px;
+  height: 48px;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: none;
+  border-radius: 6px 0 0 6px;
+}
+.friend_card .metas .background.reverse {
+  transform: scaleY(-1);
+}
+.friend_card .metas {
+  background: #20a0ff;
+  box-shadow: 0 10px 15px var(--gray_opacity_1),0 0 0 1px hsla(0,0%,100%,.06) inset;
+  border-radius: 6px;
+  height: 60px;
+  padding: 0 15px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: calc(100% - 48px);
+  text-shadow: 0 1px var(--white_default);
+  position: relative;
+}
+.friend_card .metas .title {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  transition: .25s;
+}
+
+.friend_card .metas .description {
+  position: relative;
+  color: #f0f2f5;
+  z-index: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
