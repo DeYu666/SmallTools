@@ -1,8 +1,5 @@
 import xlrd, re
 
-
-
-
 # 读取excel表格，并转化成json格式
 # data_json = ReadExcel(r".\***.xls", "Page1").read_excel()
 class ReadExcel:

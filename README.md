@@ -10,7 +10,15 @@
   - 通过分析易观千帆的 network ，找出调用数据的 api 接口，然后通过 python 爬取数据，并保存到 excle  表格中
 - ReadExcel.py  
   - 单纯的一个读取 excle 表格数据的一个代码。
+- write_excel.py
+  - 对数据写入到excel的代码做了一层包装，用起来更加的方便了。
+  - 有三个方法，为excel写入首行 title; 为excel写入内容，一行一行写入；生成 excel 表格并保存。
+- baiduzhishu.py
+  - 通过分析百度指数的 network , 找出调用数据的 api 接口，然后通过 python 爬取数据，并保存到 excel 表格中
+- appgrowing.py
+  - 通过分析 appgrowing 的 network , 找出调用数据的 api 接口，然后通过 python 爬取数据，并保存到 excel 表格中
 - 。。。。
+  - 。。。。
 
 ## other 文件存放着没有汇总的一些代码片段
 
